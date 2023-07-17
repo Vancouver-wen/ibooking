@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自习室预约系统</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
+</head>
+
+<body>
+    <!--
+    <form action="URL">
+    当表单提交时向何处发送表单数据。
+    可能的值：
+    绝对 URL - 指向另一个网站（比如 action="http://www.example.com/example.htm"）
+    相对 URL - 指向网站内的一个文件（比如 action="example.htm"）
+    -->
+
+    <div class="center-block">
+
+        <h1>自习室预约系统</h1>
+
+        <form action="/library/distinguishIdentity" method="get">
+            <!-- userAcc是user Account的缩写 -->
+            <!-- python程序通过 input的name属性访问从网页获取的值-->
+            <div class="row">
+                <div class="col-25">
+                    <label>账号:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="userAcc" placeholder="请输入账号" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>密码:</label>
+                </div>
+                <div class="col-75">
+                    <input type="password" name="userPass" placeholder="请输入密码" required>
+                </div>
+            </div>
+
+            <div class="center-block">
+                <input type="submit" value="登录">
+            </div>
+
+        </form>
+
+        <div class="center-block">
+            <a href="/library/register">
+                <button>注册</button>
+            </a>
+        </div>
+
+
+    </div>
+    <!--
+    <form action="/library/register" method="get"> 不能同时存在两个 form 提交表单
+        没有账号？新注册一个吧！
+        <input type="submit" value="注册"> <br>
+    </form>
+    -->
+</body>
+
+<style>
+    body {
+        background-color: lightblue ;
+        background-image: url("../static/img/guanghua.jpeg") ;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background-size: cover;
+    }
+</style>
+
+</html>

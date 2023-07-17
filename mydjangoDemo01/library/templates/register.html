@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自习室预约系统</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
+</head>
+<body>
+    <form action="/library/userRegister" method="get">
+        <div class="center-block">
+            <div class="row">
+                <div class="col-25"><label>账号</label></div>
+                <div class="col-75"><input type="number" name="userAcc" placeholder="请输入账号" required></div>
+            </div>
+
+            <div class="row">
+                <div class="col-25"><label>密码</label></div>
+                <div class="col-75"><input type="password" name="userPass" placeholder="请输入密码" required> </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-25"><label>姓名</label></div>
+                <div class="col-75"><input type="text" name="userName" placeholder="请输入账号" required> </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25"><label>性别</label></div>
+                <div class="col-75">男<input type="radio" name="userGender" value="man" checked> 
+                    女<input type="radio" name="userGender" value="woman"></div>
+            </div>
+   
+            <div class="row">
+                <div class="col-25"><label>邮箱</label></div>
+                <div class="col-75"><input type="text" name="userEmail" placeholder="请输入邮箱" required>  </div>
+            </div>
+
+            <div class="center-block">
+                <input type="submit" value="注册"> 
+            </div>
+            
+        </div>
+       
+    </form>
+</body>
+</html>

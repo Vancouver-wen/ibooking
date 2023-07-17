@@ -1,0 +1,180 @@
+body {
+    background-color: lightblue;
+}
+
+.center-block {
+    margin: 0 auto;
+    width: 40%;
+    padding: 1rem;
+    color: #fff;
+    background: lightblue;
+}
+
+h2 {
+    padding: 0px 20px;
+    /* border-left: 10px solid #ed515191; */
+    background-color: rgba(208, 208, 208, 0);
+    font-size: 19px;
+    line-height: 30px;
+    color: cornflowerblue;
+    font-weight: bold;
+    margin: 5px 0;
+} 
+
+
+* {
+    box-sizing: border-box;
+}
+
+input[type=text],
+select,
+textarea {
+    width: 60%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type=password] {
+    width: 60%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type=number] {
+    width: 60%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type=radio] {
+    width: 30%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type=email] {
+    width: 60%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit],
+button {
+    margin: 0 auto;
+    width: 60%;
+    height: 10%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/* input[type=submit]:hover {
+  background-color: #45a049;
+} */
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* 清除浮动 */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* 响应式布局 layout - 在屏幕宽度小于 600px 时， 设置为上下堆叠元素 */
+/* @media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+} */
+/* table {
+    text-align: center;
+}
+ 
+table thead tr th {
+    padding: 5px 20px;
+    background-color: blue;
+    font-weight: 400;
+    color: #fff;
+}
+ 
+table tbody tr td {
+    padding: 5px 20px;
+    border-top: 1px solid blue;
+}
+ 
+table tbody tr:nth-child(2n) td {
+    background-color: lightblue;
+}
+ 
+table tbody tr:last-child td {
+    border-bottom: 1px solid blue;
+} */
+
+/* Table Head */
+table thead th {
+    background-color: rgb(81, 130, 187);
+    color: #fff;
+    border-bottom-width: 0;
+}
+
+
+/* Column Style */
+table td {
+    color: #000;
+}
+
+/* Heading and Column Style */
+table tr,
+table th {
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(81, 130, 187);
+}
+
+
+/* Padding and font style */
+table td,
+table th {
+    padding: 5px 10px;
+    font-size: 12px;
+    font-family: Verdana;
+    font-weight: bold;
+}
+
+td select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

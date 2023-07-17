@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自习室预约系统</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/student.css">
+</head>
+
+<body>
+    <div class="center-block">
+        <h2>欢迎{{request.session.userAccount}}登录!</h2>
+        <hr>
+        查询座位表： <br>
+        <form id="seat" action="/library/reservationPage" method="get">
+            <div class="row">
+                <div class="col-25"><label>校区</label></div>
+                <div class="col-75"><select name="Campus">
+                        <option value="all">all</option>
+                        {% for i in request.session.context.availableCampus %}
+                        <option value="{{i}}">{{i}}</option>
+                        {%endfor%}
+                    </select></div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-25"><label>教室</label></div>
+                <div class="col-75">
+                    <select name="Classroom">
+                        <option value="all">all</option>
+                        {% for i in request.session.context.availableClassroom %}
+                        <option value="{{i}}">{{i}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25"><label>座位</label></div>
+                <div class="col-75">
+                    <select name="Index">
+                        <option value="all">all</option>
+                        {% for i in request.session.context.availableIndex %}
+                        <option value="{{i}}">{{i}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25"><label>插座</label></div>
+                <div class="col-75">
+                    <select name="Electricity">
+                        <option value="all">all</option>
+                        {% for i in request.session.context.availableElectricity %}
+                        <option value="{{i}}">{{i}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="center-block">
+                <input type="submit" value="查询" >
+            </div>
+
+        </form>
+
+        <hr>签到栏：<br>
+        <p id="latitude" style="display:none;"></p>
+        <p id="longitude"  style="display:none;"></p>
+        <table>
+            <tr>
+                <td>SignID</td>
+                <td>Deadline</td>
+                <td>Campus</td>
+                <td>Classroom</td>
+                <td>row</td>
+                <td>colume</td>
+                <td>执行操作</td>
+            </tr>
+            {% for sign in request.session.context.signs %}
+            <form method="get" action="/library/sign" id="{{seat.Id}}">
+                <!--form标签的action不能够用来传参，即使传参了也会被下面的表单覆盖-->
+                <!--正确的做法是加入一个“只读”的input标签-->
+                <tr>
+                    <td>
+                        <input type="number" name="SignID" value="{{sign.SignID}}" readonly="readonly">
+                    </td>
+                    <td><input type="text" value="{{sign.Deadline}}" readonly="readonly"></td>
+                    <td><input type="text" value="{{sign.Campus}}" readonly="readonly"></td>
+                    <td><input type="text" value="{{sign.Classroom}}" readonly="readonly"></td>
+                    <td><input type="text" value="{{sign.row}}" readonly="readonly"></td>
+                    <td><input type="text" value="{{sign.colume}}" readonly="readonly"></td>
+                    <td>
+                        <input type="submit" value="签到">
+                        <!--<a href="/library/modifySeat?SeatID={{seat.Id}}"> <button>修改该座位</button> </a> -->
+                    </td>
+                </tr>
+            </form>
+            {%endfor%}
+        </table> <br>
+
+        <hr>违约记录：<br>
+        <table>
+            <tr>
+                <!--<td>ReservationID</td>-->
+                <td>Date</td>
+                <td>Start</td>
+                <td>End</td>
+                <td>Campus</td>
+                <td>Classroom</td>
+                <td>Index</td>
+            </tr>
+            {% for break in request.session.context.breaks %}
+            <tr>
+                <!--<td>{{break.ReservationID}}</td>-->
+                <td><input type="text" value="{{break.Date}}" readonly="readonly"></td>
+                <td><input type="text" value="{{break.Start}}" readonly="readonly"></td>
+                <td><input type="text" value="{{break.End}}" readonly="readonly"></td>
+                <td><input type="text" value="{{break.Campus}}" readonly="readonly"></td>
+                <td><input type="text" value="{{break.Classroom}}" readonly="readonly"></td>
+                <td><input type="text" value="{{break.Index}}" readonly="readonly"></td>
+            </tr>
+            {%endfor%}
+        </table><br>
+
+        <hr>历史记录：（最近7次）<br>
+        <table>
+            <tr>
+                <!--<td>ReservationID</td>-->
+                <td>Date</td>
+                <td>Start</td>
+                <td>End</td>
+                <td>Campus</td>
+                <td>Classroom</td>
+                <td>Index</td>
+            </tr>
+            {% for history in request.session.context.historys %}
+            <tr>
+                <!--<td>{{break.ReservationID}}</td>-->
+                <td><input type="text" value="{{history.Date}}" readonly="readonly"></td>
+                <td><input type="text" value="{{history.Start}}" readonly="readonly"></td>
+                <td><input type="text" value="{{history.End}}" readonly="readonly"></td>
+                <td><input type="text" value="{{history.Campus}}" readonly="readonly"></td>
+                <td><input type="text" value="{{history.Classroom}}" readonly="readonly"></td>
+                <td><input type="text" value="{{history.Index}}" readonly="readonly"></td>
+            </tr>
+            {%endfor%}
+        </table><br>
+        <script>
+            var lat = document.getElementById("latitude")
+            var lon = document.getElementById("longitude")
+            //1. 判断浏览器是否支持Geolocation API
+            if ('geolocation' in navigator) {
+                // 调用navigator.geolocation下的方法获取位置信息
+                navigator.geolocation.getCurrentPosition(successCB, errorCB)
+            } else {
+                alert('不支持geolocation')
+            }
+            //2. 回调函数
+            function successCB(res) {
+                //console.dir(res)
+                lat.innerHTML = '纬度:' + res.coords.latitude;
+                lon.innerHTML = '经度:' + res.coords.longitude;
+            }
+            function errorCB(res) {
+                console.log(res)
+            }
+
+        </script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
+    <title>自习室预约系统</title>
+</head>
+
+<body>
+    <div class="center-block">
+        <form action="/library/addseat" method="get">
+            <div class="row">
+                <div class="col-25"> <label>校区：</label></div>
+                <div class="col-75">
+                    <select name="campus">
+                        <option value="江湾校区">江湾校区</option>
+                        <option value="邯郸校区">邯郸校区</option>
+                        <option value="枫林校区">枫林校区</option>
+                        <option value="张江校区">张江校区</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>教室：</label>
+                </div>
+                <div class="col-75">
+                    <select name="classroom_1">
+                        <option value="A">JA</option>
+                        <option value="B">JB</option>
+                        <option value="C">图书馆</option>
+                        <option value="D">其他区域</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25"><label>教室:</label></div>
+                <div class="col-75">
+                    <input type="number" name="classroom_2" placeholder="教室号" min="100" max="999" step="1" value="100">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25"><label>座位:</label></div>
+                <div class="col-75"> <input type="number" name="index_1" min="1" max="50" step="1" value="1"> 排</div>
+            </div>
+
+            <div class="row">
+                <div class="col-25"><label> 座位:</label></div>
+                <div class="col-75"><input type="number" name="index_2" min="1" max="20" step="1" value="1">位</div>
+            </div>
+
+            <div class="row">
+                <div class="col-25"><label>插座：</div>
+                <div class="col-75"></label>有<input type="radio" name="electricity" value="Powered" checked>
+                    无<input type="radio" name="electricity" value="Unpowered"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <labe>开始：</label>
+                </div>
+                <div class="col-75"><input type="number" name="start" min="0" max="24" step="1" value="0"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-25"><label>结束：</label></div>
+                <div class="col-75"><input type="number" name="end" min="0" max="24" step="1" value="0"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-25"><label>时长：</label></div>
+                <div class="col-75"><input type="number" name="maxtime" min="0" max="8" step="1" value="0"></div>
+            </div>
+
+            <div class="center-block">
+                <input type="submit" value="添加座位">
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自习室预约系统</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/table.css">
+</head>
+<body>
+    <!--{{seats}}-->
+    <table>
+        <tr>
+            <td>ID</td><td>Campus</td><td>Classroom</td><td>Index</td>
+            <td>Electricity</td><td>MaxTime</td><td>Start</td><td>End</td><td>Accessable</td>
+            <td>Start</td><td>End</td>
+            <td>执行操作</td>
+        </tr>
+        {% for seat in seats %}
+        <form method="get" action="/library/reservation" id="{{seat.Id}}">
+            <!--form标签的action不能够用来传参，即使传参了也会被下面的表单覆盖-->
+            <!--正确的做法是加入一个“只读”的input标签-->
+            <tr>
+                <td>
+                    <input type="number" name="SeatID"value="{{seat.Id}}" readonly="readonly" style="width:80px;">
+                </td>
+                <td><input type="text" value="{{seat.Campus}}" readonly="readonly" style="width:80px;"></td>
+                <td><input type="text" value="{{seat.Classroom}}" readonly="readonly" style="width:80px;"></td>
+                <td><input type="text" value="{{seat.Index}}" readonly="readonly" style="width:80px;"></td>
+                <td><input type="text" value="{{seat.Electricity}}" readonly="readonly" style="width:80px;"></td>
+                <td><input type="number" name="MaxTime"value="{{seat.MaxTime}}" readonly="readonly" style="width:80px;"></td>
+                <td><input type="number" name="AvailableStart"value="{{seat.Start}}" readonly="readonly" style="width:80px;"></td>
+                <td><input type="number" name="AvailableEnd"value="{{seat.End}}" readonly="readonly" style="width:80px;"></td>
+                <td><input type="text" value="{{seat.accessable}}" readonly="readonly"></td>
+                <td><input type="number" name="Start" min="0" max="24" step="1" value="0"></td>
+                <td><input type="number" name="End" min="0" max="24" step="1" value="0"></td>
+                <td>
+                    <input type="submit"  value="预约">
+                    <!--<a href="/library/modifySeat?SeatID={{seat.Id}}"> <button>修改该座位</button> </a> -->
+                </td>
+            </tr>
+        </form>
+        {%endfor%}
+    </table>
+    <br>
+</body>
+</html>

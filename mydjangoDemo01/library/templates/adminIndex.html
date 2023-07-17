@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自习室预约系统</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
+</head>
+
+<body>
+
+    <div class="center-block">
+        <h2>欢迎管理员{{request.session.userAccount}}登录!
+        </h2>
+        <!--密码为：{{userPassword}}<br>-->
+        <hr>
+        <a href="/library/addseatpage"> 
+            <div class="center-block">
+                <button>添加座位</button>
+            </div> </a> <br>
+        <!--<a href="/library/register"> <button>通过csv导入座位</button> </a>-->
+        <form id="seat" action="/library/manageSeatPage" method="get">
+            查询座位表:
+            <div>
+                <label>校区：</label>
+                <select name="Campus">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.availableCampus %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div>
+                <label>教室：</label>
+                <select name="Classroom">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.availableClassroom %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div>
+                <label>座位：</label>
+                <select name="Index">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.availableIndex %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div>
+                <label>插座：</label>
+                <select name="Electricity">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.availableElectricity %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div class="center-block">
+                <input type="submit" value="查询">
+            </div>
+        </form>
+        <hr>
+        <!--<a href="/library/register"> <button>添加一个学生</button> </a> <br>-->
+        <!--<a href="/library/register"> <button>通过csv导入学生</button> </a>-->
+        <form id="student" action="/library/manageStudentPage" method="get">
+            查询学生表： <br>
+            <div>
+                <label>姓名：</label>
+                <select name="Name">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.availableName %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div>
+                <label>学号：</label>
+                <select name="UserID">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.availableUserID %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div>
+                <label>邮箱：</label>
+                <select name="Email">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.availableEmail %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div class="center-block">
+                <input type="submit" value="查询">
+            </div>
+        </form>
+        <hr>
+        <form id="reservation" action="/library/manageReservationPage" method="get">
+            查询预定表： <br>
+            <div>
+                <label>年份：</label>
+                <select name="Year">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.reservedDateYear %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div>
+                <label>月份：</label>
+                <select name="Month">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.reservedDateMonth %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div>
+                <label>天份：</label>
+                <select name="Day">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.reservedDateDay %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div>
+                <label>状态：</label>
+                <select name="State">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.reservedState %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div>
+                <label>学号：</label>
+                <select name="UserID">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.reservedUserID %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div>
+                <label>座位：</label>
+                <select name="SeatID">
+                    <option value="all">all</option>
+                    {% for i in request.session.context.reservedSeatID %}
+                    <option value="{{i}}">{{i}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div class="center-block">
+                <input type="submit" value="查询">
+            </div>
+           
+        </form>
+
+    </div>
+</body>
+
+</html>

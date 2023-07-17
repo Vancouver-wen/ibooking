@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    image: ubuntu:web
+    container_name: web
+    hostname: web
+    restart: always
+    command: python3 ./manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./mydjangoDemo01:/home/mydjangoDemo01
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql 
+
+  mysql:
+    image: mysql:8.0.26
+    container_name: mysql
+    hostname: mysql
+    restart: always
+    privileged: true
+    command:
+      --max_connections=1000
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/conf/my.cnf:/etc/mysql/my.cnf
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/library.sql:/home/mysql/library.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456 
+      - MYSQL_DATABASE=library

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自习室预约系统</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/table.css">
+</head>
+<body>
+    <!--{{seats}}-->
+    <div class="center-block">
+    <table  >
+        <tr>
+            <td>ID</td><td>Campus</td><td>Classroom</td><td>Index</td>
+            <td>Electricity</td><td>MaxTime</td><td>Mask</td>
+            <td>执行操作</td>
+        </tr>
+        {% for seat in seats %}
+        <form method="get" action="/library/modifySeat" id="{{seat.Id}}">
+            <!--form标签的action不能够用来传参，即使传参了也会被下面的表单覆盖-->
+            <!--正确的做法是加入一个“只读”的input标签-->
+            <tr>
+                <td><input type="number" name="SeatID"value="{{seat.Id}}" readonly="readonly" style="width:80px;"> </td>
+                <td>
+                    <select name="Campus">
+                        <option value="{{seat.Campus}}" selected>{{seat.Campus}}</option>
+                        <option value="江湾校区">江湾校区</option>
+                        <option value="邯郸校区">邯郸校区</option>
+                        <option value="枫林校区">枫林校区</option>
+                        <option value="张江校区">张江校区</option>
+                        <option value="None">None</option>
+                    </select> 
+                </td>
+                <td><input type="text" name="Classroom" value="{{seat.Classroom}}"></td>
+                <td><input type="number" name="Index" value="{{seat.Index}}"></td>
+                <td>
+                    <select name="Electricity">
+                        <option value="{{seat.Electricity}}" selected>{{seat.Electricity}}</option>
+                        <option value="True">True</option>
+                        <option value="False">False</option>
+                    </select> 
+                </td>
+                <td><input type="number" name="MaxTime" value="{{seat.MaxTime}}" ></td>
+                <td><input type="text" name="Mask" value="{{seat.Mask}}" style="width:250px;"></td>
+                <td>
+                    <input type="submit"  value="修改">
+                    <!--<a href="/library/modifySeat?SeatID={{seat.Id}}"> <button>修改该座位</button> </a> -->
+                </td>
+            </tr>
+        </form>
+        {%endfor%}
+    </table>
+</div>
+</body>
+
+</html>

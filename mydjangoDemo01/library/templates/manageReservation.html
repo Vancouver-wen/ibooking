@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自习室预约系统</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/table.css">
+</head>
+<body>
+    <!-- sorry,you can not manage ReservationInfo! <br>
+    管理员只能够查看所有的预约表，但不能够修改预约表的值 <br>
+    {% for reservation in reservations %} 
+        {{reservation}} <br>
+    {% endfor %} -->
+
+    <div class="center-block">
+        管理员只能够查看所有的预约表，但不能够修改预约表的值 
+        <hr>
+        <table >
+            <tr>
+                <td>UserID</td>
+                <td>SeatID</td>
+                <td>SeatCampus</td>
+                <td>SeatClassroom</td>
+                <td>SeatIndex</td>
+                <td>Date</td>
+                <td>Start</td>
+                <td>End</td>
+                <td>State</td>
+            </tr>
+            {% for reservation in reservations %} 
+            <tr>
+                <td><input type="text" value="{{reservation.UserID}}" readonly="readonly"></td>
+                <td><input type="text" value="{{reservation.SeatID}}" readonly="readonly" style="width:80px;"></td>
+                <td><input type="text" value="{{reservation.SeatCampus}}" readonly="readonly"></td>
+                <td><input type="text" value="{{reservation.SeatClassroom}}" readonly="readonly" style="width:80px;"></td>
+                <td><input type="text" value="{{reservation.SeatIndex}}" readonly="readonly" style="width:80px;"></td>
+                <td><input type="text" value="{{reservation.Date}}" readonly="readonly"></td>
+                <td><input type="text" value="{{reservation.Start}}" readonly="readonly" style="width:80px;"></td>
+                <td><input type="text" value="{{reservation.End}}" readonly="readonly" style="width:80px;"></td>
+                <td><input type="text" value="{{reservation.State}}" readonly="readonly" style="width:80px;"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+    
+</body>
+</html>
