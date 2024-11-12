@@ -13,7 +13,7 @@ def sendemail(Head="自习室管理系统自动邮箱",Context="test Context",To
     message['Subject'] = Header(Head, 'utf-8')  # 定义主题内容
     print(message)
     # 登录，需要：登录邮箱和授权码
-    smtp.login(user="1052951572@qq.com", password="qybwcyadxefebcbi")
+    smtp.login(user="1052951572@qq.com", password="your own password")
     smtp.sendmail(
         from_addr="1052951572@qq.com", 
         to_addrs=ToAddress,  
